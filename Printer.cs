@@ -8,9 +8,10 @@ namespace ConsoleApp1
 {
     internal class Printer
     {
-        public void PrintArea(Circle circle)
+        public void PrintArea(IShape shape)
         {
-            Console.WriteLine($"Area of the shape: {circle}");
+            Console.WriteLine($"Area of the shape: {shape}");
         }
+        
     }
 }
