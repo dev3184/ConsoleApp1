@@ -5,19 +5,27 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            IShape circle = new Circle(5);
+            I2DShape circle = new Circle(5);
             CalculateArea(circle);
-            IShape rectangle = new Rectangle(4, 6);
+            I2DShape rectangle = new Rectangle(4, 6);
             CalculateArea(rectangle);
+            I3DShape sphere = new Sphere(4);
+            CalculateArea(sphere);
             new Printer().PrintArea(circle);
             new Printer().PrintArea(rectangle);
+            new Printer().PrintArea(sphere);
 
         }
-        private static void CalculateArea(IShape shape)
+        private static void CalculateArea(I2DShape shape)
         {
             double area = shape.Area();
             Console.WriteLine($"Area of the circle: {area}");
         }
-       
+        private static void CalculateArea(I3DShape shape)
+        {
+            double volume = shape.Volume();
+            Console.WriteLine($"Volume of the sphere: {volume}");
+        }
+
     }
 }

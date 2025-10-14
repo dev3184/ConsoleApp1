@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
+    // Interface Segregation Principle Example
     public interface IShape
+    { 
+    }
+    public interface I2DShape : IShape
     {
         double Area();
     }
-    public class Circle : IShape
+    public interface I3DShape : IShape
+    {
+        double Volume();
+    }
+    public class Circle : I2DShape
     {
         private double radius;
         public Circle(double radius)
@@ -23,7 +31,7 @@ namespace ConsoleApp1
         }
         
     }
-    public class Rectangle : IShape
+    public class Rectangle : I2DShape
     {
         private double length;
         private double width;
@@ -36,7 +44,22 @@ namespace ConsoleApp1
         {
             return length * width;
         }
+
     }
+    public class Sphere : I3DShape
+    {
+        private double radius;
+        public Sphere(double radius)
+        {
+            this.radius = radius;
+        }
+        public double Volume()
+        {
+            return (4.0 / 3.0) * Math.PI * Math.Pow(radius, 3);
+        }
+    }
+
+
     // Open/Closed Principle Violation Example
 
     //public class Circle
