@@ -11,9 +11,10 @@ namespace ConsoleApp1
             CalculateArea(rectangle);
             I3DShape sphere = new Sphere(4);
             CalculateArea(sphere);
-            new Printer().PrintArea(circle);
-            new Printer().PrintArea(rectangle);
-            new Printer().PrintArea(sphere);
+            IPrinter printer = new Printer();
+            printer.PrintArea(circle);
+            printer.PrintArea(rectangle);
+            printer.PrintArea(sphere);
 
         }
         private static void CalculateArea(I2DShape shape)
