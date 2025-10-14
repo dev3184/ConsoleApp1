@@ -5,15 +5,19 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Circle circle = new Circle(5);
+            IShape circle = new Circle(5);
             CalculateArea(circle);
+            IShape rectangle = new Rectangle(4, 6);
+            CalculateArea(rectangle);
             new Printer().PrintArea(circle);
+            new Printer().PrintArea(rectangle);
 
         }
-        private static void CalculateArea(Circle circle)
+        private static void CalculateArea(IShape shape)
         {
-            double area = circle.Area();
+            double area = shape.Area();
             Console.WriteLine($"Area of the circle: {area}");
         }
+       
     }
 }
