@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class Shapes
-    {
-    }
+    
+    
+        public class Circle
+        {
+            public double Radius { get; set; }
+            public Circle(double radius)
+            {
+                Radius = radius;
+            }
+            public double Area()
+            {
+                return Math.PI * Radius * Radius;
+            }
+        }
 }
