@@ -5,12 +5,14 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            AreaDelegate areaDelegate = new AreaDelegate(CalculateArea);    
+            VolumeDelegate volumeDelegate = new VolumeDelegate(CalculateArea);
             I2DShape circle = new Circle(5);
-            CalculateArea(circle);
+            areaDelegate(circle);
             I2DShape rectangle = new Rectangle(4, 6);
-            CalculateArea(rectangle);
+            areaDelegate(rectangle);
             I3DShape sphere = new Sphere(4);
-            CalculateArea(sphere);
+            volumeDelegate(sphere);
             IPrinter printer = new Printer();
             printer.PrintArea(circle);
             printer.PrintArea(rectangle);
@@ -27,6 +29,9 @@ namespace ConsoleApp1
             double volume = shape.Volume();
             Console.WriteLine($"Volume of the sphere: {volume}");
         }
+        public delegate void AreaDelegate(I2DShape shape);
+        public delegate void VolumeDelegate(I3DShape shape);
+
 
     }
 }
