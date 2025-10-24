@@ -17,6 +17,18 @@ namespace ConsoleApp1
             printer.PrintArea(circle);
             printer.PrintArea(rectangle);
             printer.PrintArea(sphere);
+            Console.WriteLine(circle.ToDetailedString());
+
+            //Events and Delegate example 
+
+            ProcessBusinessLogic process = new ProcessBusinessLogic();
+
+            // Subscribe to the event
+            process.ProcessCompleted += ProcessCompletedHandler;
+
+            process.StartProcess();
+
+            Console.ReadKey();
 
         }
         private static void CalculateArea(I2DShape shape)
@@ -32,6 +44,27 @@ namespace ConsoleApp1
         public delegate void AreaDelegate(I2DShape shape);
         public delegate void VolumeDelegate(I3DShape shape);
 
+        static void ProcessCompletedHandler()
+        {
+            Console.WriteLine("Notification: Process has completed successfully!");
+        }
+        
 
+
+    }
+    public static class ExtensionMethods
+    {
+        public static string ToDetailedString(this IShape shape)
+        {
+            switch (shape)
+            {
+                case I2DShape twoDShape:
+                    return $"2D Shape with Area: {twoDShape.Area()}";
+                case I3DShape threeDShape:
+                    return $"3D Shape with Volume: {threeDShape.Volume()}";
+                default:
+                    return "Unknown Shape";
+            }
+        }
     }
 }
