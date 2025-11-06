@@ -72,6 +72,18 @@ namespace ConsoleApp1
                 Console.WriteLine("Error: " + ex.Message);
             }
 
+
+            // ApplicationException Example 
+            try
+            {
+                Account acc = new Account(1000);
+                acc.Withdraw(2000);
+            }
+            catch (InsufficientFundsException ex)
+            {
+                Console.WriteLine($"{ex.Message} Current balance: {ex.CurrentBalance}");
+            }
+
         }
         private static void CalculateArea(I2DShape shape)
         {
@@ -109,4 +121,34 @@ namespace ConsoleApp1
             }
         }
     }
+
+    // ApplicationException example 
+    public class InsufficientFundsException : Exception
+    {
+        public double CurrentBalance { get; }
+
+        public InsufficientFundsException(string message, double currentBalance)
+            : base(message)
+        {
+            CurrentBalance = currentBalance;
+        }
+    }
+
+    class Account
+    {
+        public double Balance { get; private set; }
+
+        public Account(double balance)
+        {
+            Balance = balance;
+        }
+
+        public void Withdraw(double amount)
+        {
+            if (amount > Balance)
+                throw new InsufficientFundsException("Insufficient funds!", Balance);
+            Balance -= amount;
+        }
+    }
+
 }
