@@ -30,6 +30,48 @@ namespace ConsoleApp1
 
             Console.ReadKey();
 
+            //SystemExceptions
+            try
+            {
+                int[] arr = new int[3];
+                Console.WriteLine(arr[5]);  // IndexOutOfRangeException
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            try
+            {
+                string s = null;
+                Console.WriteLine(s.Length);  // NullReferenceException
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            try
+            {
+                int x = int.Parse("abc");  // FormatException
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            try
+            {
+                using (var reader = new StreamReader("nofile.txt"))  // FileNotFoundException
+                {
+                    Console.WriteLine(reader.ReadLine());
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
         }
         private static void CalculateArea(I2DShape shape)
         {
