@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Concurrent;
 namespace ConsoleApp1
 {
     internal class Program
@@ -83,6 +85,84 @@ namespace ConsoleApp1
             {
                 Console.WriteLine($"{ex.Message} Current balance: {ex.CurrentBalance}");
             }
+
+
+
+            // Collections Example
+            ArrayList list = new ArrayList();
+            list.Add(10);
+            list.Add("Hello");
+            list.Add(20);
+
+            list.Insert(1, "World");
+            list.Remove(10);
+
+            Console.WriteLine("ArrayList Elements:");
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
+
+            Hashtable table = new Hashtable();
+            table.Add(1, "C#");
+            table.Add(2, "Java");
+            table.Add(3, "Python");
+
+            foreach (DictionaryEntry item in table)
+                Console.WriteLine(item.Key + " → " + item.Value);
+
+            Stack stack = new Stack();
+            stack.Push("A");
+            stack.Push("B");
+            stack.Push("C");
+
+            Console.WriteLine(stack.Pop()); // C
+            Console.WriteLine(stack.Peek()); // B
+
+
+            Queue queue = new Queue();
+            queue.Enqueue("First");
+            queue.Enqueue("Second");
+            queue.Enqueue("Third");
+
+            Console.WriteLine(queue.Dequeue()); // First
+            Console.WriteLine(queue.Peek()); // Second
+
+            // Generic Collections 
+            List<int> numbers = new List<int> { 1, 2, 3 };
+            numbers.Add(4);
+            numbers.Remove(2);
+            numbers.Insert(1, 10);
+            numbers.Sort();
+
+            foreach (int n in numbers)
+                Console.WriteLine(n);
+
+            Dictionary<int, string> dict = new Dictionary<int, string>();
+            dict.Add(1, "Apple");
+            dict.Add(2, "Banana");
+
+            if (dict.ContainsKey(1))
+                Console.WriteLine(dict[1]);
+
+            HashSet<int> set = new HashSet<int> { 1, 2, 3 };
+            set.Add(2); // ignored, duplicate
+            set.Add(4);
+
+            foreach (var i in set)
+                Console.WriteLine(i);
+
+
+            // Concurrent Collections 
+            var dict1 = new ConcurrentDictionary<int, string>();
+
+            Parallel.For(0, 5, i =>
+            {
+                dict1.TryAdd(i, "Value " + i);
+            });
+
+            foreach (var kvp in dict1)
+                Console.WriteLine(kvp.Key + ": " + kvp.Value);
 
         }
         private static void CalculateArea(I2DShape shape)
