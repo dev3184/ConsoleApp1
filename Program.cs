@@ -230,5 +230,11 @@ namespace ConsoleApp1
             Balance -= amount;
         }
     }
+    public class Box<T>
+    {
+        public T Value { get; set; }
+        public Box(T value) => Value = value;
+        public override string ToString() => $"Box contains: {Value}";
+    }
 
 }
