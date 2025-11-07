@@ -164,6 +164,11 @@ namespace ConsoleApp1
             foreach (var kvp in dict1)
                 Console.WriteLine(kvp.Key + ": " + kvp.Value);
 
+            var intBox = new Box<int>(123);
+            var strBox = new Box<string>("hello");
+            Console.WriteLine(intBox); // Box contains: 123
+            Console.WriteLine(strBox); // Box contains: hello
+
         }
         private static void CalculateArea(I2DShape shape)
         {
